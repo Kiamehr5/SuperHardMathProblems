@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Hard Math Problems - Advanced Calculus Study Portal</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #3498db;
+            --bg: #f4f7f6;
+        }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; padding: 20px; }
+        header { background: var(--primary); color: white; padding: 20px; border-radius: 10px; margin-bottom: 20px; text-align: center; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
+        .game-card {
+            background: white; padding: 15px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center; cursor: pointer; transition: transform 0.2s; border: 1px solid #ddd;
+        }
+        .game-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .game-card h3 { font-size: 1rem; margin: 10px 0; color: var(--primary); }
+        .game-card span { font-size: 0.8rem; color: #7f8c8d; }
+        #game-container { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 100; }
+        #game-frame { width: 90%; height: 80%; border: none; margin: 5% auto; display: block; background: white; border-radius: 10px; }
+        .close-btn { position: absolute; top: 20px; right: 40px; color: white; font-size: 30px; cursor: pointer; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Advanced Logic & Math Solutions</h1>
+    <p>Select a module to begin your practice session.</p>
+</header>
+
+<div class="grid" id="gameGrid"></div>
+
+<div id="game-container">
+    <span class="close-btn" onclick="closeGame()">&times; Close Module</span>
+    <iframe id="game-frame" src=""></iframe>
+</div>
+
+<script>
+    const repoBase = "https://kiamehr5.github.io/SuperHardMathProblems/";
+    
+    // List of folders from the repository
+    const games = [
+        "01-Candy-Crush-Game", "01-Tag-Game", "02-Pac-Man-Game", "03-Chess-Game", 
+        "04-Doodle-Jump-Game", "05-Solitaire-Game", "06-Sudoku-Game", "07-Crossy-Road-Game",
+        "08-Rock-Paper-Scissors", "09-Flappy-Bird-Game", "10-2048-Game", "11-Wordle-Game",
+        "12-Hangman-Game", "13-Tower-Blocks", "14-Archery-Game", "15-Tic-Tac-Toe",
+        "16-Minesweeper-Game", "17-Speed-Typing-Game", "18-Breakout-Game", "19-Ping-Pong-Game",
+        "20-Tetris-Game", "21-Tilting-Maze-Game", "22-Memory-Card-Game", "23-Type-Number-Guessing-Game",
+        "24-Snake-Game", "25-Connect-Four-Game", "26-Insect-Catch-Game", "27-Typing-Game",
+        "28-Dice-Roll-Simulator", "29-Shape-Clicker-Game", "31-Speak-Number-Guessing-Game",
+        "32-Fruit-Slicer-Game", "33-Quiz-Game", "34-Emoji-Catcher-Game", "35-Whack-A-Mole-Game",
+        "36-Simon-Says-Game", "37-Sliding-Puzzle-Game"
+    ];
+
+    const grid = document.getElementById('gameGrid');
+    games.forEach(game => {
+        const name = game.replace(/^\d+-/, '').replace(/-/g, ' ');
+        const card = document.createElement('div');
+        card.className = 'game-card';
+        card.innerHTML = `<h3>${name}</h3><span>Logic Module ${game.split('-')[0]}</span>`;
+        card.onclick = () => openGame(game);
+        grid.appendChild(card);
+    });
+
+    function openGame(folder) {
+        const frame = document.getElementById('game-frame');
+        const container = document.getElementById('game-container');
+        frame.src = repoBase + folder + "/index.html";
+        container.style.display = 'block';
+    }
+
+    function closeGame() {
+        const container = document.getElementById('game-container');
+        const frame = document.getElementById('game-frame');
+        container.style.display = 'none';
+        frame.src = "";
+    }
+</script>
+
+</body>
+</html>
